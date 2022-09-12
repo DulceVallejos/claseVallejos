@@ -1,0 +1,8 @@
+@mixin negrita {
+    font-weight: bold;
+}
+
+@mixin subrayado($color, $tipo) {
+    text-decoration: underline;
+    text-decoration-color: $color;
+}

@@ -1,0 +1,353 @@
+@import "variables";
+* {
+    padding: 0%;
+    margin: 0%;
+  }
+  body {
+    color:#1A5276;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    margin-right: 2%;
+    margin-left: 2%;
+    background: linear-gradient(to right, rgb(164, 196, 233), white, rgb(164, 196, 233));
+  }
+  
+  .logo {
+    padding: 0%;
+    background-repeat: none;
+    margin: 1% 1% 1% 1% 
+  }
+  
+  #main {
+    width: 100%;
+    height: 800px;
+    background-color: transparent;
+    margin: 2px 0px 0px 0px;
+  }
+  
+  header,
+  footer,
+  aside,
+  section,
+  nav {
+    border-radius: 15px;
+  }
+  
+  h1 {
+    display: inline;
+  }
+  
+  nav ul li {
+    display: inline;
+  }
+  
+  ul {
+    list-style-type: none;
+  }
+  
+  aside {
+    grid-area: aside;
+    font-size: 20px;
+    padding: 6%;
+  }
+  
+  header,footer {
+    padding: 30px;
+    grid-area: header;
+    justify-content: space-between;
+    display: flex;
+    align-items: center;
+  }
+
+  img {
+    width: 100px;
+    height: 100px;
+    border-radius: 20%;
+    justify-content: space-between;
+  }
+  
+  .imagen{
+    border-radius: 0%;
+  }
+
+  .bi {
+    padding-right: 10px !important;
+  }
+
+  .espaciado {
+    padding-left: 10px;
+  }
+
+  section {
+    padding: 10px 10px 10px 10px;
+    grid-area: section;
+    justify-items: space-evenly;
+    align-items: stretch
+  }
+  
+  #ubicacion{
+    display:flex;
+    flex-flow:row wrap; 
+    justify-content:space-evenly;
+  }
+  
+  .item {
+    background-color:transparent;
+    color: #1A5276;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 20px;
+    z-index: 2;
+    justify-content:center;
+    text-align: center;
+  }
+  
+  #imagenes{
+    width: 115px;
+    height: 150px;
+  }
+  
+  #nosotros{
+    width: 300px;
+    height: 200px;
+    padding-top: 2%;
+    text-align: center;
+  }
+  
+
+  #titulo{
+    justify-content:space-evenly;
+    text-align: center;
+    font-size: 40px; 
+    font-weight:lighter;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: #1A5276;
+    position: justify; 
+    background-color: transparent;
+  }
+  
+ h3{
+ text-align: center;
+ }
+  
+ #subtitulo{
+ animation-duration: 2s;
+ animation-name: aparecer;
+ animation-iteration-count: infinite; 
+ font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+ color: #1A5276; 
+ justify-content:space-evenly;
+ position: justify;
+ text-align: center
+  }
+  
+  .divTransform,
+  .divTransition{
+    color: #1A5276;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 20px;
+    border-top: solid 5px #1A5276 ;
+    border-right: solid 5px #1A5276;
+    border-bottom: solid 5px #1A5276;
+    border-left: solid 5px #1A5276;
+    border-radius: 15px;
+  }
+  
+  .divTransform{
+      transform: translate(20px, 20px); 
+      transform: scale(1,1); 
+  }
+  
+  .divTransition{
+    transition: height 2s, width 4s;
+    transition: all 2s; 
+  }
+  
+  .divTransition:hover
+  {
+    background-color: white 
+  }
+
+  @keyframes aparecer { 
+    0% {opacity: 0;}
+    100% {opacity: 1;}
+  }
+    
+  .cambioTexto{
+    color: white;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 20px; 
+    text-align: justify
+  }
+  
+  #main, 
+  section{
+    display: grid;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 20px;
+  }
+  
+  footer {
+    grid-area: footer;
+    justify-content: center;
+    background-color:  #1A5276;
+  }
+
+  .navbar{
+    padding: 2%;
+  }
+  
+  .card1{
+    border: solid 3px #1A5276;
+  }
+  
+  @media screen and (min-width: 360px) {
+  #main {
+   grid-template-columns: auto;
+   grid-template-rows: auto;
+   column-gap: 10px;
+   row-gap: 10px;
+   grid-template-areas: "header" "nav" "section" "footer";
+    }
+  aside,
+  #ulNav,
+  #inputHeader,
+  #inputNav1 {
+   display: none; }
+  nav {
+   display: flex;
+   justify-content: space-around; }
+  #inputNav {
+    margin: 15px; }
+  }
+  
+  @media screen and (min-width: 1200px){
+  #main {
+    display: grid;
+    grid-template-columns: 15% auto;
+    grid-template-rows: 15% 10% auto 15%;
+    grid-template-areas: "header header" "nav nav" "aside section" "footer footer";
+  }
+  section {
+    grid-template-columns: repeat(3, auto);
+    grid-template-rows: repeat(4, auto);
+    grid-gap: 10px;
+  }
+  aside {
+    display: block;
+  }
+  #menuBurger
+  {
+    display: block;
+  }}
+  
+   @media (max-width: 576px) {
+    header {
+    background-color: transparent;
+    }
+  }
+  
+  @media (min-width: 768px) and (max-width: 868px) {
+    header {
+     background-color:  #1A5276;
+    }
+  }
+  
+  @media (min-width: 768px) and (orientation: landscape) {
+    header,footer {
+        background-color: #1A5276;
+    }
+   } 
+  .card-body a:link {
+    background-color: #1A5276 ;
+  }
+  .card-body a:hover {
+    background-color:#80DEEA;
+  }
+  .card-body a:active {
+    background-color: #1A5276 ;
+  }
+  .row {
+    background-color:  #1A5276;
+    color: #1A5276;
+  }
+ 
+  .row div h2 {
+    text-decoration: underline;
+  }
+  div {
+    background-color:  #1A5276;
+  }
+  div .btn {
+    background-color: #80DEEA;
+  }
+  div .btn:hover {
+    background-color: #80DEEA;
+    color: #1A5276;
+  }
+
+.row {
+    background-color:#80DEEA;
+    color: $colorTexto;
+    div {
+        border: solid 3px $colorPrincipal;
+        h2 {
+            text-decoration: underline;
+        }
+    }
+}
+
+  div {
+    $colorHover: #80DEEA;
+    background-color: white;
+    .btn {
+        background-color: $colorPrincipal;
+        &:hover {
+            color: $colorTexto;
+        }
+    }
+}
+
+footer {
+    height: 100px;
+    width: 100%;
+    justify-content: center;
+    .redes {
+     border-radius: 40%;
+     width: $tamanoBoton;
+     height: $tamanoBoton;
+     font-size: $tamanoTipo;
+    }
+}
+
+@each $red,
+$color in $redes {
+    .#{$red} {
+        background-color: $color;
+    }
+} 
+
+@media (max-width: 550px) {
+    .redes {
+        width: ($tamanoBoton - 10)/2;
+        height: ($tamanoBoton - 10)/2;
+        font-size: ($tamanoTipo)/2;
+        @if $tamanoBoton/2 <= 40px {
+            background-color: #1A5276; 
+        }
+        @else if $tamanoBoton/2 > 40px {
+            background-color: #87bbdb;
+        }
+        @else {
+            background-color: #159cf0;
+        }
+    }
+}
+
+@for $i from 1 to 2 {
+    .redes#{$i} {
+     width: $tamanoBoton/$i;
+     height: $tamanoBoton/$i;
+    }
+}
+
+
+

@@ -1,67 +1,97 @@
-
-let entrada = Number(prompt("Responda correctamente cuantos años cumple nuestro emprendimiento y gane un premio!"));
-let counter = 0;
-
-const infomys = [ 
-    { 
-   emprendedores: "Marianela y Sebastián",
-   categoría: "Productos de limpieza",
-   desde: "01/08/2020",
-}
-]
-     
-const premios = [
-    {
-    premio1: "Uva",
-    categoria: "perfumes textiles",
-},
-{
-    premio1: "Coco-vainilla",
-    categoria: "perfumes textiles",
-},
-{
-    premio2: "Citrico",
-    categoria: "aromatizante de ambientes",
-},
-{
-    premio2: "Floral",
-    categoria: "aromatizante de ambientes",
-},
-{
-    premio3: "Tutti-frutti",
-    categoria: "aromatizante de auto",
-},
-{
-    premio3: "Tropical",
-    categoria: "aromatizante de auto",
-}
-]
-
-
-while(entrada !== 2 && counter < 2){
-    alert("Incorrecto, intenta de nuevo");
-    entrada = Number(prompt("Responda correctamente cuantos años cumple nuestro emprendimiento y gane un premio!"));
-    counter++;
-}if(counter < 2){
-    alert("Felicidades! Ganaste un premio");
-    const informacion = infomys.map (mys => mys.desde);
-    console.log(informacion);
-    let eleccion = Number(prompt("Elija una categoría para su premio e ingrese el número correspondiente 1: Perfumes textiles, 2: Aromatizante de ambiente, 3: Aromatizante de auto"));
-    if (eleccion == 1){
-        const resultados = premios.filter(premio => premio.categoria == "perfumes textiles");
-        console.log("Como usted eligió perfumes textiles los aromas a elegir son: " );
-        console.log(resultados)
-    } else if (eleccion == 2){ 
-        const resultados1 = premios.filter(premio => premio.categoria == "aromatizante de ambientes");
-        console.log("Como usted eligió aromatizante de ambientes los aromas a elegir son: "  );
-        console.log(resultados1)
-    } else if ( eleccion == 3){
-        const resultados2 = premios.filter(premio => premio.categoria == "aromatizante de auto");
-        console.log("Como usted eligió aromatizante de auto los aromas a elegir son: " );
-        console.log(resultados2)
-    } else
-        alert("El número ingresado no es correcto");
+class Consulta{
+    constructor(nombreCompleto, eMail, haceTuConsulta) {
+        this.nombreCompleto = nombreCompleto;
+        this.eMail = eMail;
+        this.haceTuConsulta = haceTuConsulta;
     }
-else {
-    alert("Te quedaste sin intentos");
 }
+
+
+let nombreUsuario;
+
+document.getElementById("formulario-usuario").addEventListener("submit", manejadorFormularioUsuario);
+
+function manejadorFormularioUsuario(e){
+    e.preventDefault();
+    nombreUsuario = document.getElementById("user").value;
+
+    let listadodeConsultas = document.getElementById("listadodeConsultas");
+    const consultas = JSON.parse(localStorage.getItem(nombreUsuario));
+
+    if(consultas == null){
+        listadodeConsultas.innerHTML = "<h1>No hay consultas para mostrar</h1>";
+    }else {
+        mostrarConsultas(consultas);
+    }
+    mostrarPanel();
+}
+
+
+function mostrarConsultas(consultas) {
+    let listadodeConsultas = document.getElementById("listadodeConsultas");
+    listadodeConsultas.innerHTML = "";
+    
+    consultas.forEach(consulta => {
+    let li = document.createElement("li");
+    li.innerHTML = 
+    `<hr> ${consulta.nombreCompleto.toUpperCase()} - ${consulta.eMail} - ${consulta.haceTuConsulta}`;
+    const botonBorrar = crearBotonEliminar(consulta);
+    li.appendChild(botonBorrar);
+    listadodeConsultas.appendChild(li);
+});
+}
+
+function crearBotonEliminar(consulta){
+    const botonBorrar = document.createElement("button");
+    botonBorrar.innerText = "Borrar";
+    botonBorrar.addEventListener("click", () => {
+        eliminarConsulta(consulta);
+    })
+    return botonBorrar;
+}
+
+
+function mostrarPanel(){
+    const opcion = document.getElementById("opcion");
+
+    opcion.innerHTML =
+    `<h3>Bienvenido ${nombreUsuario}</h3>
+    <form id="formulario-consulta">
+    <input type="text" id="nombreCompleto" placeholder="Nombre Completo">
+    <input type="text" id="eMail" placeholder="E-mail">
+    <textarea  cols="65" rows="10" id="haceTuConsulta" placeholder="Hace Tu Consulta"></textarea>
+    <button type="submit">Agregar consulta</button>
+    </form>`;
+    document.getElementById("formulario-consulta").addEventListener("submit", agregarConsulta);
+
+}
+
+function agregarConsulta(e){
+    e.preventDefault();
+    const nombreCompleto = document.getElementById("nombreCompleto").value;
+    const eMail = document.getElementById("eMail").value;
+    const haceTuConsulta = document.getElementById("haceTuConsulta").value;
+
+    let consulta = new Consulta(nombreCompleto, eMail, haceTuConsulta);
+    const consultasEnLocalStorage = JSON.parse(localStorage.getItem(nombreUsuario));
+
+    if(consultasEnLocalStorage == null){
+        localStorage.setItem(nombreUsuario, JSON.stringify([consulta]));
+        mostrarConsultas([consulta]);
+    }else{
+        consultasEnLocalStorage.push(consulta);
+        localStorage.setItem(nombreUsuario, JSON.stringify(consultasEnLocalStorage));
+        mostrarConsultas(consultasEnLocalStorage);
+    }
+    e.target.reset();
+}
+
+
+
+function eliminarConsulta(consulta) {
+    const consultasEnLocalStorage = JSON.parse(localStorage.getItem(nombreUsuario));
+    const nuevoArray = consultasEnLocalStorage.filter(item => item.nombreCompleto != consulta.nombreCompleto);
+    localStorage.setItem(nombreUsuario, JSON.stringify(nuevoArray));
+    mostrarConsultas(nuevoArray);
+}
+

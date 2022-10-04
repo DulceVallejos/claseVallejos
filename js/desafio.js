@@ -55,7 +55,7 @@ function mostrarPanel() {
     const opcion = document.getElementById("opcion");
 
     opcion.innerHTML =
-    `<h3>Bienvenido ${nombreUsuario}</h3>
+   `<h3>Bienvenido ${nombreUsuario}</h3>
     <form id="formulario-consulta">
     <input type="text" id="nombreCompleto" placeholder="Nombre Completo">
     <input type="text" id="eMail" placeholder="E-mail">

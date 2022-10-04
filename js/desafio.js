@@ -68,10 +68,10 @@ function mostrarPanel() {
     const miBtn = document.querySelector("#miBoton");
     miBtn.addEventListener('click', () => {
         Swal.fire({
+            icon: "success",
             title: "Consulta realizada con éxito!",
             text: "Le llegará nuestra respuesta a la brevedad",
-            icon: "success",
-            button: "Entendido",
+            button: "ok",
         });
     })
 }

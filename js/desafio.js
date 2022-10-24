@@ -6,31 +6,24 @@ class Consulta{
     }
 }
 
-
 let nombreUsuario;
 
-document.getElementById("formulario-usuario").addEventListener("submit", manejadorFormularioUsuario);
+const formularioUsuario = document.getElementById("formulario-usuario");
 
-function manejadorFormularioUsuario(e){
-    e.preventDefault();
-    nombreUsuario = document.getElementById("user").value;
-
-    let listadodeConsultas = document.getElementById("listadodeConsultas");
-    const consultas = JSON.parse(localStorage.getItem(nombreUsuario));
-
-    if(consultas == null){
-        listadodeConsultas.innerHTML = "<h1>No hay consultas para mostrar</h1>";
-    }else {
-        mostrarConsultas(consultas);
-    }
-    mostrarPanel();
+//Boton para eliminar consulta anterior
+function crearBotonEliminar(consulta){
+    const botonBorrar = document.createElement("button");
+    botonBorrar.innerText = "Borrar";
+    botonBorrar.addEventListener("click", () => {
+        eliminarConsulta(consulta);
+    })
+    return botonBorrar;
 }
 
-
+//Listado de consultas visible al poner el usuario
 function mostrarConsultas(consultas) {
     let listadodeConsultas = document.getElementById("listadodeConsultas");
     listadodeConsultas.innerHTML = "";
-    
     consultas.forEach(consulta => {
     let li = document.createElement("li");
     li.innerHTML = 
@@ -41,16 +34,7 @@ function mostrarConsultas(consultas) {
 });
 }
 
-function crearBotonEliminar(consulta){
-    const botonBorrar = document.createElement("button");
-    botonBorrar.innerText = "Borrar";
-    botonBorrar.addEventListener("click", () => {
-        eliminarConsulta(consulta);
-    })
-    return botonBorrar;
-
-}
-
+//Formulario para hacer consulta
 function mostrarPanel() {
     const opcion = document.getElementById("opcion");
 
@@ -60,11 +44,12 @@ function mostrarPanel() {
     <input type="text" id="nombreCompleto" placeholder="Nombre Completo">
     <input type="text" id="eMail" placeholder="E-mail">
     <textarea  cols="65" rows="10" id="haceTuConsulta" placeholder="Hace Tu Consulta"></textarea>
+    <br>
     <button id="miBoton" type="submit">Agregar consulta</button>
     </form>`;
     document.getElementById("formulario-consulta").addEventListener("submit", agregarConsulta);
 
-
+ //Alerta de que se agrego la consulta correctamente
     const miBtn = document.querySelector("#miBoton");
     miBtn.addEventListener('click', () => {
         Swal.fire({
@@ -72,12 +57,30 @@ function mostrarPanel() {
             title: "Consulta realizada con éxito!",
             text: "Le llegará nuestra respuesta a la brevedad",
             button: "ok",
-        });
+        }); 
     })
+   
 }
 
+//Lo que se muestra cuando no hay consultas
+function manejadorFormularioUsuario(e){
+    e.preventDefault();
+    nombreUsuario = document.getElementById("user").value;
+
+    let listadodeConsultas = document.getElementById("listadodeConsultas");
+    const consultas = JSON.parse(localStorage.getItem(nombreUsuario));
+
+    consultas == null ? listadodeConsultas.innerHTML = "<h1>No hay consultas para mostrar</h1>" : mostrarConsultas(consultas);
+    mostrarPanel();
+
+}
+
+formularioUsuario.addEventListener("submit", manejadorFormularioUsuario);
 
 
+
+
+//Cuando el usuario agrega una nueva consulta se guardo la anterior y agrego la actual
 function agregarConsulta(e){
     e.preventDefault();
     const nombreCompleto = document.getElementById("nombreCompleto").value;

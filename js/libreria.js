@@ -1,4 +1,6 @@
 const miBtn = document.querySelector("#cBtn");
+
+//Librería agregada en el html principal
 miBtn.addEventListener('click', () =>{
     Toastify({
         text: "Debes iniciar sesión para comprar este producto",
@@ -14,12 +16,7 @@ miBtn.addEventListener('click', () =>{
         onClick: function(){} // Callback after click
       }).showToast();
     
-/*Swal.fire({
-    title: "Consulta realizada con éxito!",
-    text: "par",
-    icon: "success",
-    button: "Ok",
-  });*/
+
 })
 
 

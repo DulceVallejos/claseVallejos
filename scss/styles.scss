@@ -10,7 +10,26 @@
     margin-left: 2%;
     background: linear-gradient(to right, rgb(164, 196, 233), white, rgb(164, 196, 233));
   }
+
+  .linkProducto:hover {
+    text-decoration: underline;
+    transition: all 1s;
+    
+    
+  }
   
+  .listaProductosContainer{ 
+    background-color: transparent;
+
+   .listaProductos{
+      background-color: transparent;
+      li{
+        background-color: transparent;
+        h2{
+          background-color: transparent;
+        }
+      }
+  }}
   .logo {
     padding: 0%;
     background-repeat: none;
@@ -51,7 +70,7 @@
   }
   
   header,footer {
-    padding: 30px;
+    padding: 20px;
     grid-area: header;
     justify-content: space-between;
     display: flex;
@@ -189,6 +208,7 @@
     grid-area: footer;
     justify-content: center;
     background-color:  #1A5276;
+    margin-top: 20vh;
   }
 
   .navbar{
@@ -203,6 +223,7 @@
   #main {
    grid-template-columns: auto;
    grid-template-rows: auto;
+   -moz-column-gap: 10px;
    column-gap: 10px;
    row-gap: 10px;
    grid-template-areas: "header" "nav" "section" "footer";
@@ -225,6 +246,9 @@
     grid-template-columns: 15% auto;
     grid-template-rows: 15% 10% auto 15%;
     grid-template-areas: "header header" "nav nav" "aside section" "footer footer";
+  }
+  .navbar{
+    display: none;
   }
   section {
     grid-template-columns: repeat(3, auto);
@@ -265,10 +289,7 @@
   .card-body a:active {
     background-color: #1A5276 ;
   }
-  .row {
-    background-color:  #1A5276;
-    color: #1A5276;
-  }
+
  
   .row div h2 {
     text-decoration: underline;
@@ -280,15 +301,14 @@
     background-color: #80DEEA;
   }
   div .btn:hover {
-    background-color: #80DEEA;
+    background-color: #80DEEA ;
     color: #1A5276;
   }
 
 .row {
-    background-color:#80DEEA;
+    background-color:transparent;
     color: $colorTexto;
     div {
-        border: solid 3px $colorPrincipal;
         h2 {
             text-decoration: underline;
         }
@@ -297,7 +317,7 @@
 
   div {
     $colorHover: #80DEEA;
-    background-color: white;
+    background-color: transparent;
     .btn {
         background-color: $colorPrincipal;
         &:hover {
